@@ -49,6 +49,7 @@ mod cursor;
 mod modifiers;
 mod state;
 
+mod astro;
 mod js;
 mod jsx;
 mod ts;

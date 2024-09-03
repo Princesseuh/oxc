@@ -168,6 +168,10 @@ impl SourceType {
         self.variant == LanguageVariant::Jsx
     }
 
+    pub fn is_astro(self) -> bool {
+        self.language == Language::Astro
+    }
+
     pub fn always_strict(self) -> bool {
         self.always_strict
     }
