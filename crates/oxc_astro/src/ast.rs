@@ -17,6 +17,21 @@ use tsify::Tsify;
 
 use super::{inherit_variants, js::*};
 
+// Astro Program
+//
+// ## Examples
+#[ast(visit)]
+#[derive(Debug, Hash)]
+#[generate_derive(CloneIn, GetSpan, GetSpanMut)]
+#[cfg_attr(feature = "serialize", derive(Serialize, Tsify))]
+#[serde(tag = "type", rename_all = "camelCase")]
+pub struct AstroProgram<'a> {
+    #[serde(flatten)]
+    pub span: Span,
+    /// Frontmatter (aka "component script")
+    pub frontmatter: Option<Box<'a, AstroFrontMatter<'a>>>,
+}
+
 // Astro Element
 //
 // ## Examples
