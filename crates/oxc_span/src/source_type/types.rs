@@ -36,6 +36,7 @@ pub enum Language {
     TypeScript = 1,
     #[serde(rename = "typescriptDefinition")]
     TypeScriptDefinition = 2,
+    Astro = 3,
 }
 
 /// Script or Module

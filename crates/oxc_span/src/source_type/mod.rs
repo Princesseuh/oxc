@@ -22,7 +22,8 @@ impl<'a> CloneIn<'a> for SourceType {
 }
 
 /// Valid file extensions
-pub const VALID_EXTENSIONS: [&str; 8] = ["js", "mjs", "cjs", "jsx", "ts", "mts", "cts", "tsx"];
+pub const VALID_EXTENSIONS: [&str; 9] =
+    ["js", "mjs", "cjs", "jsx", "ts", "mts", "cts", "tsx", "astro"];
 
 impl SourceType {
     /// Creates a [`SourceType`] representing a regular [`JavaScript`] file.
@@ -280,7 +281,7 @@ impl SourceType {
             .ok_or_else(|| {
                 let path = path.as_ref().to_string_lossy();
                 UnknownExtension::new(
-                    format!("Please provide a valid file extension for {path}: .js, .mjs, .jsx or .cjs for JavaScript, or .ts, .d.ts, .mts, .cts or .tsx for TypeScript"),
+                    format!("Please provide a valid file extension for {path}: .js, .mjs, .jsx or .cjs for JavaScript, or .ts, .d.ts, .mts, .cts or .tsx for TypeScript, or .astro for Astro."),
                 )
             })?;
 
@@ -298,6 +299,7 @@ impl SourceType {
             }
             "ts" | "mts" | "tsx" => (Language::TypeScript, ModuleKind::Module),
             "cts" => (Language::TypeScript, ModuleKind::Script),
+            "astro" => (Language::Astro, ModuleKind::Module),
             _ => {
                 #[cfg(debug_assertions)]
                 unreachable!();
